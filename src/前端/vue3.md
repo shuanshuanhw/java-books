@@ -60,3 +60,73 @@ v-if 的元素是真正的会被移除
   {{ parentMessage }} - {{ index }} - {{ item.message }}
 </li>
 ```
+
+# 9、v-for应用在数组或对象是不同
+应用在数组时，有两个参数 value,index
+应用在对象时，有三个参数 value name index name是指对象的key
+
+#  10、当 Vue 正在更新使用 v-for 渲染的元素列表时，它默认使用“就地更新”的策略，但是只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出。
+为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一的 key attribute：
+```javascript
+<div v-for="item in items" :key="item.id">
+  <!-- 内容 -->
+</div>
+```
+
+# 11、template是模板占位符，起到div的包裹作用，但是渲染后不会出现在页面上
+```html
+            <template v-for="(item, index) in list" :key="item.id">
+                <div>{{item.text}}--{{index}}</div>
+                <span>{{item.text}}</span>
+            </template>
+```
+# 12、@click.prevent函数会阻止触发dom的原始事件，而去执行特定的事件
+```html
+<!-- 示例 -->
+    <a class="img-control" v-show="true" @click.prevent="goXxx()">修改</a>
+```
+解析：
+a标签默认有自己的href属性，触发a标签后他会自动跳转对应的链接地址或执行的函数。
+此处为了嵌套，避免调整样式所以引用a标签来处理，但为避免a标签的属性限制，因此引用@click.prevent函数来隔离默认操作
+
+# 13、emits
+1- 新建模板的时候，在模板内的代码，使用$emit('remove')
+```html
+app.component('todo-item', {
+  template: `
+          <li>
+            {{ title }}
+            <button v-on:click="$emit('remove')">Remove</button>
+          </li>
+        `,
+  props: ['title'],
+  emits: ['remove']
+})
+```
+2- 在父框架使用模板的时候
+```html
+    <todo-item
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></todo-item>
+```
+# 14、有时也需要在内联语句处理器中访问原始的 DOM 事件。可以用特殊变量 $event 把它传入方法
+```html
+<button @click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
+
+// ...
+methods: {
+warn(message, event) {
+// 现在可以访问到原生事件
+if (event) {
+event.preventDefault()
+}
+alert(message)
+}
+}
+
+```
