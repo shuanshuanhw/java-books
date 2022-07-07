@@ -145,3 +145,15 @@ alert(message)
     .passive
 ```
 ###17、v-model 会忽略所有表单元素的 value、checked、selected attribute 的初始值。
+
+###18、浏览器将所有大写字符解释为小写。这意味着当你在 DOM 模板中使用时，驼峰 prop 名称和 event 处理器参数需要使用它们的 kebab-cased (横线字符分隔) 等效值：
+```html
+app.component('blog-post', {
+  props: ['postTitle'],
+  template: `
+    <h3>{{ postTitle }}</h3>
+  `
+})
+
+<blog-post post-title="hello!"></blog-post>
+```
