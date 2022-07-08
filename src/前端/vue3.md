@@ -145,3 +145,26 @@ alert(message)
     .passive
 ```
 ###17、v-model 会忽略所有表单元素的 value、checked、selected attribute 的初始值。
+###18、如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符
+```html
+<input v-model.trim="msg" />
+```
+###19、创建一个 Vue 组件
+```javascript
+// 创建一个Vue 应用
+const app = Vue.createApp({})
+
+// 定义一个名为 button-counter 的新全局组件
+app.component('button-counter', {
+  data() {
+    return {
+      count: 0
+    }
+  },
+  template: `
+    <button @click="count++">
+      You clicked me {{ count }} times.
+    </button>`
+})
+
+```
