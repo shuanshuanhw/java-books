@@ -168,3 +168,23 @@ app.component('button-counter', {
 })
 
 ```
+
+###18、浏览器将所有大写字符解释为小写。这意味着当你在 DOM 模板中使用时，驼峰 prop 名称和 event 处理器参数需要使用它们的 kebab-cased (横线字符分隔) 等效值：
+```html
+app.component('blog-post', {
+  props: ['postTitle'],
+  template: `
+    <h3>{{ postTitle }}</h3>
+  `
+})
+
+<blog-post post-title="hello!"></blog-post>
+```
+
+###19、组件的命名
+全部小写<br />
+包含连字符 (及：即有多个单词与连字符符号连接)
+
+kebab-case、PascalCase
+<br />
+当使用 PascalCase (首字母大写命名) 定义一个组件时，你在引用这个自定义元素时两种命名法都可以使用。也就是说 <my-component-name> 和 <MyComponentName> 都是可接受的。注意，尽管如此，直接在 DOM (即非字符串的模板) 中使用时只有 kebab-case 是有效的。
