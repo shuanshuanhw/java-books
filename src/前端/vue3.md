@@ -188,3 +188,18 @@ app.component('blog-post', {
 kebab-case、PascalCase
 <br />
 当使用 PascalCase (首字母大写命名) 定义一个组件时，你在引用这个自定义元素时两种命名法都可以使用。也就是说 <my-component-name> 和 <MyComponentName> 都是可接受的。注意，尽管如此，直接在 DOM (即非字符串的模板) 中使用时只有 kebab-case 是有效的。
+
+###20、通常你希望每个 prop 都有指定的值类型
+```javascript
+props: {
+  title: String,
+  likes: Number,
+  isPublished: Boolean,
+  commentIds: Array,
+  author: Object,
+  callback: Function,
+  contactsPromise: Promise // 或任何其他构造函数
+}
+```
+###21、爷爷组件传值给孙子组件的一种方法
+父组件不用props，直接在调用孙组件时绑定数据，v-bind="$attrs"，在定义孙组件时用props定义参数。
