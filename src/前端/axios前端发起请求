@@ -1,3 +1,24 @@
 1、带参数的四种方式
 路径、paras:{}、headers:{}、data:{}
 路径就是直接一个/带一个参数，paras就是在?后的键对值，data是请求体，是post才有的
+通过request.headers['']拿到请求头的参数
+
+2、实现回车即登陆，在el-form里加上@keyup.enter.native="login"
+.native是指原生事件，因为el-form这个组件是没有keyup.enter事件的，所以要追溯到最外层的原生组件，原生组件有这个原生事件
+
+3、只有在输入框全部输入后，登陆按键才是可点击状态
+定义一个计算属性布尔变量，在控件中用disabled关联起来
+
+4、免费插图网站 https://blush.design/zh-CN ,可以通过查看元素，不需要会员下载到大图
+
+5、后台返回参数时，可以直接用解构，比如说之前是用response，但是response里面有data，现在就直接用{ data }
+可以在代码中解构，比如 { accessToken } = data
+
+6、利用token 可以防止表单重复提交
+1- 前端可以通过按钮置灰防止表单提交
+2- 后端的话就是验证request里的token 是否和session里的token相等，从而判断这个表单是否提交过
+
+7、使用cookie和session方案，可能会有CSRF安全问题
+三个方法解决 验证 HTTP Referer 字段；在请求地址中添加 token 并验证；在 HTTP 头中自定义属性并验证。
+参考网址：https://www.jianshu.com/p/7f33f9c7997b
+
