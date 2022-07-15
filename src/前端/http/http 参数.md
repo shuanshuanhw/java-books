@@ -41,3 +41,4 @@ host可以为空值，但不能缺失，host主要用来处理相同ip地址相�
 （3）网页加载静态资源，比如加载图片、脚本、样式。
 
 ### 12、Transfer-Encoding
+在头部加入 Transfer-Encoding: chunked 之后，就代表这个报文采用了分块编码。
