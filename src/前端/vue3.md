@@ -203,3 +203,52 @@ props: {
 ```
 ###21、爷爷组件传值给孙子组件的一种方法
 父组件不用props，直接在调用孙组件时绑定数据，v-bind="$attrs"，在定义孙组件时用props定义参数。
+
+###22、keep-alive是Vue提供的一个抽象组件，主要用于保留组件状态或避免重新渲染。微信小程序是自带缓存的，没有这个问题，这个问题存在h5页面
+在返回的时候，可以做到不需要重新渲染，但是并不是所有的组件都需要被缓存，所以要在路由定义那里配置哪些路由需要被路由。
+```javascript
+1，定义两个出口 router-view
+<keep-alive>
+    <!-- 需要缓存的视图组件 -->
+  <router-view v-if="$route.meta.keepAlive">
+  </router-view>
+</keep-alive>
+​
+<!-- 不需要缓存的视图组件 -->
+<router-view v-if="!$route.meta.keepAlive">
+</router-view>
+
+2，在router配置中定义哪些需要缓存哪些不需要缓存
+
+new Router({
+    routes: [
+        {
+            path: '/',
+            name: 'index',
+            component: () => import('./views/keep-alive/index.vue')
+        },
+        {
+            path: '/list',
+            name: 'list',
+            component: () => import('./views/keep-alive/list.vue'),
+            meta: {
+                keepAlive: true //需要被缓存
+            }
+        },
+        {
+            path: '/detail',
+            name: 'detail',
+            component: () => import('./views/keep-alive/detail.vue')
+        }
+    ]
+})
+
+```
+
+###23、Source Map 就是一个信息文件，里面存储了代码打包转换后的位置信息，实质是一个 json 描述文件，维护了打包前后的代码映射关系。
+```javascript
+开启 Source Map ：
+devtool: "source-map",
+如果还没用，就需要在浏览器的开发者工具 -- 设置 中勾选两个选项：1、enable javascript sourcemap 2、enable css sourcemap
+```
+
