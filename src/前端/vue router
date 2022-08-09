@@ -1,0 +1,4 @@
+1、在this.$router.push()里面的对象定义中，传参的问题
+如果用path，搭配query，比如{path:'/',query:{value:'huangwei'}}
+如果用name，搭配params，比如{name:'/',params:{value:'shuanshuan'}}
+用params的方式，一刷新，这个值就没有了
