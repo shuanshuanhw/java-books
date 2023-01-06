@@ -251,4 +251,14 @@ new Router({
 devtool: "source-map",
 如果还没用，就需要在浏览器的开发者工具 -- 设置 中勾选两个选项：1、enable javascript sourcemap 2、enable css sourcemap
 ```
-
+###24、cross-env处理环境变量
+直接在npm命令中带环境变量
+```javascript
+npm install --save-dev cross-env
+{
+    "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js"
+}
+}
+```
+也可以在env文件里定义环境变量，但在不同的操作系统下可能产生一些问题
