@@ -12,3 +12,5 @@ TYPE_USE表示该注解能使用在使用类型的任意语句
 类型强转时使用String str = (@myAnnoUse String) o;
 方法形参中使用public String getUser(@myAnnoUse String  name, Integer age)
 泛型中使用public String getClasses(List<@myAnnoUse User> list)
+
+6、mysql两个ui工具 SQLLyog MySQLAdministrator 
